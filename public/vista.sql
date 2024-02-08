@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW `vw_producto` AS
+select `producto`.`id` AS `id`, `producto`.`orden` AS `orden`,`producto`.`estado` AS `estado`,`producto`.`nombre` AS `nombre`,`producto`.`precio` AS `precio`,`producto`.`descripcion` AS `des`,group_concat(`categoria`.`descripcion` separator ' ') AS `categorias` from ((`producto` left join `producto_categoria` on((`producto_categoria`.`id_producto` = `producto`.`id`))) left join `categoria` on((`categoria`.`id` = `producto_categoria`.`id_categoria`))) group by `producto`.`id`
